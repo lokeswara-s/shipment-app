@@ -24,7 +24,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
 import StepFour from './StepFour';
-
+import Data from '../Shipping/Data.json'
 class Selection extends React.Component{
  
     state = {
@@ -443,9 +443,12 @@ const SectionOne=(props)=>{
                             value={props.state.shipmentCity}
                             onChange={(e)=>{props.handleChange("shipmentCity",e.target.value)}}
                         >
-                        <MenuItem value={'hyderbad'}>Hyderabad</MenuItem>
-                        <MenuItem value={'warangal'}>Warangal</MenuItem>
-                        <MenuItem value={'secundarabad'}>Secundrabad</MenuItem>
+                        {
+                            Data.map(item=>{
+                                if(item.label !== props.state.receipentCity){
+                                return <MenuItem value={item.label}>{item.label}</MenuItem>}
+                            })
+                        }
                     </Select>
                 </FormControl>
             </div>

@@ -28,6 +28,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Data from './Data.json';
 const StepTwo = (props)=>{
     return (
         <div style={{display:"flex", flexWrap:"wrap"}}> 
@@ -135,9 +136,13 @@ const StepTwo = (props)=>{
                             value={props.state.receipentCity}
                             onChange={(e)=>{props.handleChange("receipentCity",e.target.value)}}
                         >
-                        <MenuItem value={'hyderbad'}>Hyderabad</MenuItem>
-                        <MenuItem value={'warangal'}>Warangal</MenuItem>
-                        <MenuItem value={'secundarabad'}>Secundrabad</MenuItem>
+                        {
+                            Data.map(item=>{
+                                if(item.label !== props.state.shipmentCity){
+                                    return <MenuItem value={item.label}>{item.label}</MenuItem>
+                                }
+                            })
+                        }
                     </Select>
                 </FormControl>
             </div>
